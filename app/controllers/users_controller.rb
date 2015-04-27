@@ -29,6 +29,12 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Your account was successfully updated."
+    else
+      flash[:notice] = "Oops! Please fix the errors and try again."
+    end
+    render :edit
   end
 
   def destroy

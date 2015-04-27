@@ -1,2 +1,2 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>Welcome, <% @user.username %> </h1>
+<p> <%= link_to("Click here", edit_user_path(@user))%> to edit your details!</p>
