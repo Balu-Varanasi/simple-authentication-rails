@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user, only: [:index, ]
+  before_filter :authenticate_user, only: [:index, :edit, :update, :destroy]
   before_filter :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -45,6 +45,10 @@ class UsersController < ApplicationController
 
   private
     def set_user
-      @user = User.find(params[:id])
+      begin
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => e
+        @user = nil
+      end
     end
 end

@@ -1,2 +1,10 @@
-<h1>Welcome, <% @user.username %> </h1>
-<p> <%= link_to("Click here", edit_user_path(@user))%> to edit your details!</p>
+<% if not @user.blank? %>
+	<h1><%= @user.username %> </h1>
+
+	<% if not @current_user.blank? and (@user.id == @current_user.id) %>
+		<p> <%= link_to("Click here", edit_user_path(@user))%> to edit your details!</p>
+	<% end %>
+
+<% else %>
+	<h1> User Not Found! </h1>
+<% end %>
